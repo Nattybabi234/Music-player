@@ -71,6 +71,7 @@ function prevSong() {
   }
   loadSong(songs[songIndex]); // update the UI
   playSong(); // automatically play
+  updateActiveSong(); // Step 1 addition
 }
 
 function nextSong() {
@@ -80,6 +81,7 @@ function nextSong() {
   }
   loadSong(songs[songIndex]); // update the UI
   playSong(); // automatically play
+  updateActiveSong(); // Step 1 addition
 }
 
 prevBtn.addEventListener('click', prevSong);
@@ -111,7 +113,6 @@ function setProgress(e) {
   const width = this.clientWidth;
   const clickX = e.offsetX;
   const duration = audio.duration;
-
   audio.currentTime = (clickX / width) * duration;
 }
 
@@ -123,12 +124,17 @@ volumeSlider.addEventListener('input', (e) => {
 
 audio.volume = volumeSlider.value; // sets volume to 0.9 by default
 
-const playlist = document.getElementById('playlist');
 
-// Build playlist dynamically
+//--------------------------------------//
+// ✅ STEP 1: Create Playlist UI
+//--------------------------------------//
+const playlist = document.createElement('ul');
+playlist.id = 'playlist';
+document.body.appendChild(playlist);
+
 songs.forEach((song, index) => {
   const li = document.createElement('li');
-  li.textContent = `${song.title} - ${song.artist}`;
+  li.textContent = `${song.title} — ${song.artist}`;
   li.addEventListener('click', () => {
     songIndex = index;
     loadSong(songs[songIndex]);
@@ -144,36 +150,18 @@ function updateActiveSong() {
     li.classList.toggle('active', i === songIndex);
   });
 }
-
-// Highlight the first song when page loads
 updateActiveSong();
 
-// Update active song when next or previous is pressed
-const originalNextSong = nextSong;
-nextSong = function () {
-  songIndex++;
-  if (songIndex >= songs.length) songIndex = 0;
-  loadSong(songs[songIndex]);
-  playSong();
-  updateActiveSong();
-};
 
-const originalPrevSong = prevSong;
-prevSong = function () {
-  songIndex--;
-  if (songIndex < 0) songIndex = songs.length - 1;
-  loadSong(songs[songIndex]);
-  playSong();
-  updateActiveSong();
-};
-
-// Also update active song when song ends
+//--------------------------------------//
+// ✅ STEP 2: Auto-Play Next Song
+//--------------------------------------//
 audio.addEventListener('ended', () => {
   songIndex++;
-  if (songIndex >= songs.length) songIndex = 0;
+  if (songIndex >= songs.length) {
+    songIndex = 0;
+  }
   loadSong(songs[songIndex]);
   playSong();
   updateActiveSong();
 });
-
-
