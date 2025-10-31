@@ -23,7 +23,7 @@ const songs = [
     title: "E ti tobi to o",
     artist: "EmmaOMG",
     src: "EmmaOMG-E-Ti-Tobi-To.mp3",
-    cover: "EmmaOMG E-Ti-Tobi-To-image.jpeg"
+    cover: "EmmaOMG E-Ti-Tobi-To-image.jpg"
   }
 ];
 
@@ -116,4 +116,5 @@ volumeSlider.addEventListener('input', (e) => {
 });
 
 audio.volume = volumeSlider.value; // sets volume to 0.9 by default
+
 
