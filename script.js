@@ -16,14 +16,14 @@ const songs = [
   {
     title: "Jugular Jugular",
     artist: "Greatman Takit and Lawrence Oyor",
-    src: "music/Lawrence-Oyor-Jugular-Jugular-feat-Greatman-Takit.mp3",
-    cover: "images/jugular jugular image.jpeg"
+    src: "Lawrence-Oyor-Jugular-Jugular-feat-Greatman-Takit.mp3",
+    cover: "jugular jugular image.jpeg"
   },
   {
     title: "E ti tobi to o",
     artist: "EmmaOMG",
-    src: "music/EmmaOMG-E-Ti-Tobi-To.mp3",
-    cover: "images/EmmaOMG E-Ti-Tobi-To-image.jpeg"
+    src: "EmmaOMG-E-Ti-Tobi-To.mp3",
+    cover: "EmmaOMG E-Ti-Tobi-To-image.jpeg"
   }
 ];
 
@@ -116,3 +116,4 @@ volumeSlider.addEventListener('input', (e) => {
 });
 
 audio.volume = volumeSlider.value; // sets volume to 0.9 by default
+
