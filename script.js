@@ -16,7 +16,7 @@ const songs = [
   {
     title: "Jugular Jugular",
     artist: "Greatman Takit and Lawrence Oyor",
-    src: "Lawrence-Oyor-Jugular-Jugular-feat-Greatman-Takit.mp3",
+    src: "jugular jugular audio.mp3",
     cover: "jugular jugular image.jpeg"
   },
   {
@@ -116,6 +116,7 @@ volumeSlider.addEventListener('input', (e) => {
 });
 
 audio.volume = volumeSlider.value; // sets volume to 0.9 by default
+
 
 
 
