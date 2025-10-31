@@ -159,8 +159,9 @@ body {
 
 .music-icon {
   font-size: 40px; /* bigger note */
-  color: royalblue; /* your brand color */
+  color: #2861bd; /* your brand color */
   display: block;
   text-align: center;
   margin-bottom: 10px;
 }
+
