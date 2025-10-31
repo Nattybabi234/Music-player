@@ -24,6 +24,12 @@ const songs = [
     artist: "EmmaOMG",
     src: "E ti tobi to o.mp3",
     cover: "EmmaOMG-E-Ti-Tobi-To image.jpg"
+  },
+  {
+    title: "Ordinary",
+    artist: "Alex Warren",
+    src: "ordinary.mp3",
+    cover: "ordinary cover.png"
   }
 ];
 
@@ -116,4 +122,5 @@ volumeSlider.addEventListener('input', (e) => {
 });
 
 audio.volume = volumeSlider.value; // sets volume to 0.9 by default
+
 
