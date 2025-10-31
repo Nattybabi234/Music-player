@@ -165,3 +165,54 @@ body {
   margin-bottom: 10px;
 }
 
+/* === PLAYLIST STYLING === */
+h3 {
+  color: #fff;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+}
+
+#playlist {
+  list-style: none;
+  margin: 1rem auto 0;
+  padding: 0;
+  max-width: 320px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+#playlist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#playlist li:last-child {
+  border-bottom: none;
+}
+
+#playlist li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#playlist li.active {
+  background: rgba(0, 128, 255, 0.3);
+  font-weight: 600;
+}
+
+#playlist img {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
