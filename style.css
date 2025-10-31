@@ -156,3 +156,11 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.music-icon {
+  font-size: 40px; /* bigger note */
+  color: royalblue; /* your brand color */
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+}
