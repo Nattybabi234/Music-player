@@ -4,62 +4,63 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Najaza — Music Player</title>
-  <!-- Google font later -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <!-- stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <main class="app">
-      <div class="logo-container">
-  <span class="music-icon">🎵</span>
-</div>
-
-        <div class="player-container">
-            <section class="music-player" aria-label="Music player">
-                <div class="img-container">
-                    <img id="cover" class="cover" src="jugular jugular image.jpeg" alt="Album cover for current track" />
-                  </div>
-                  <!--Song info-->
-                  <div class="track-meta">
-                    <h2 id="title">Jugular Jugular</h2>
-                    <h3 id="artist">Greatman Takit and Lawrence Oyor</h3>
-                  </div>
-                  
-                  <audio id="audio" preload="metadata"></audio>
-                  
-                  <!--Action buttons-->
-                  <div class="navigation" role="group" aria-label="Playback controls">
-                    <button id="prev" class="action-btn" title="Previous track" aria-label="Previous">⏮</button>
-                    <button id="play" class="action-btn action-btn-big" title="Play/Pause" aria-label="Play">▶</button>
-                    <button id="next" class="action-btn" title="Next track" aria-label="Next">⏭</button>
-                  </div>
-                  
-                  <!-- progress bar -->
-<div class="progress-wrap" id="progress-container" aria-label="Audio progress" role="slider" tabindex="0">
-    <div class="progress" id="progress"></div>
-  </div>
-
-  <!-- time and volume -->
-<div class="extras">
-    <div class="time">
-      <span id="currentTime">0:00</span> / 
-      <span id="duration">0:00</span>
+  <main class="app">
+    <div class="logo-container">
+      <span class="music-icon">🎵</span>
     </div>
-  
-    <div class="volume">
-      <label for="volumeRange" class="visually-hidden">Volume</label>
-      <input id="volumeRange" type="range" min="0" max="1" step="0.01" value="0.9" />
-    </div>
-  </div>
-  
-  
-                  </div>
-            </section>
+
+    <div class="player-container">
+      <section class="music-player" aria-label="Music player">
+        <div class="img-container">
+          <img id="cover" class="cover" src="images/jugular jugular image.jpeg" alt="Album cover for current track" />
         </div>
-    </main>
+
+        <!-- Song info -->
+        <div class="track-meta">
+          <h2 id="title">Jugular Jugular</h2>
+          <h3 id="artist">Greatman Takit and Lawrence Oyor</h3>
+        </div>
+        
+        <audio id="audio" preload="metadata"></audio>
+        
+        <!-- Action buttons -->
+        <div class="navigation" role="group" aria-label="Playback controls">
+          <button id="prev" class="action-btn" title="Previous track" aria-label="Previous">⏮</button>
+          <button id="play" class="action-btn action-btn-big" title="Play/Pause" aria-label="Play">▶</button>
+          <button id="next" class="action-btn" title="Next track" aria-label="Next">⏭</button>
+        </div>
+        
+        <!-- progress bar -->
+        <div class="progress-wrap" id="progress-container" aria-label="Audio progress" role="slider" tabindex="0">
+          <div class="progress" id="progress"></div>
+        </div>
+
+        <!-- time and volume -->
+        <div class="extras">
+          <div class="time">
+            <span id="currentTime">0:00</span> / 
+            <span id="duration">0:00</span>
+          </div>
+
+          <div class="volume">
+            <label for="volumeRange" class="visually-hidden">Volume</label>
+            <input id="volumeRange" type="range" min="0" max="1" step="0.01" value="0.9" />
+          </div>
+        </div>
+
+        <!-- 🎵 ADD THIS PLAYLIST SECTION -->
+        <h3>Playlist</h3>
+        <ul id="playlist"></ul>
+        <!-- 🎵 END PLAYLIST SECTION -->
+
+      </section>
+    </div>
+  </main>
+
   <script src="script.js" defer></script>
 </body>
 </html>
-
-
