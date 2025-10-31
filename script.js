@@ -123,4 +123,57 @@ volumeSlider.addEventListener('input', (e) => {
 
 audio.volume = volumeSlider.value; // sets volume to 0.9 by default
 
+const playlist = document.getElementById('playlist');
+
+// Build playlist dynamically
+songs.forEach((song, index) => {
+  const li = document.createElement('li');
+  li.textContent = `${song.title} - ${song.artist}`;
+  li.addEventListener('click', () => {
+    songIndex = index;
+    loadSong(songs[songIndex]);
+    playSong();
+    updateActiveSong();
+  });
+  playlist.appendChild(li);
+});
+
+function updateActiveSong() {
+  const items = document.querySelectorAll('#playlist li');
+  items.forEach((li, i) => {
+    li.classList.toggle('active', i === songIndex);
+  });
+}
+
+// Highlight the first song when page loads
+updateActiveSong();
+
+// Update active song when next or previous is pressed
+const originalNextSong = nextSong;
+nextSong = function () {
+  songIndex++;
+  if (songIndex >= songs.length) songIndex = 0;
+  loadSong(songs[songIndex]);
+  playSong();
+  updateActiveSong();
+};
+
+const originalPrevSong = prevSong;
+prevSong = function () {
+  songIndex--;
+  if (songIndex < 0) songIndex = songs.length - 1;
+  loadSong(songs[songIndex]);
+  playSong();
+  updateActiveSong();
+};
+
+// Also update active song when song ends
+audio.addEventListener('ended', () => {
+  songIndex++;
+  if (songIndex >= songs.length) songIndex = 0;
+  loadSong(songs[songIndex]);
+  playSong();
+  updateActiveSong();
+});
+
 
