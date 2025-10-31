@@ -71,7 +71,7 @@ function prevSong() {
   }
   loadSong(songs[songIndex]); // update the UI
   playSong(); // automatically play
-  updateActiveSong(); // Step 1 addition
+  updateActiveSong(); // highlight active song
 }
 
 function nextSong() {
@@ -81,7 +81,7 @@ function nextSong() {
   }
   loadSong(songs[songIndex]); // update the UI
   playSong(); // automatically play
-  updateActiveSong(); // Step 1 addition
+  updateActiveSong(); // highlight active song
 }
 
 prevBtn.addEventListener('click', prevSong);
@@ -92,13 +92,11 @@ function updateProgress(e) {
   const progressPercent = (currentTime / duration) * 100;
   progress.style.width = `${progressPercent}%`;
 
-  // Update time display
   let minutes = Math.floor(currentTime / 60);
   let seconds = Math.floor(currentTime % 60);
   if (seconds < 10) seconds = `0${seconds}`;
   currentTimeEl.textContent = `${minutes}:${seconds}`;
 
-  // Total duration
   let totalMinutes = Math.floor(duration / 60);
   let totalSeconds = Math.floor(duration % 60);
   if (totalSeconds < 10) totalSeconds = `0${totalSeconds}`;
@@ -126,11 +124,14 @@ audio.volume = volumeSlider.value; // sets volume to 0.9 by default
 
 
 //--------------------------------------//
-// ✅ STEP 1: Create Playlist UI
+// ✅ STEP 1: Playlist UI (Inside Player)
 //--------------------------------------//
 const playlist = document.createElement('ul');
 playlist.id = 'playlist';
-document.body.appendChild(playlist);
+
+// Append playlist inside the music player
+const playlistContainer = document.querySelector('.music-player');
+playlistContainer.appendChild(playlist);
 
 songs.forEach((song, index) => {
   const li = document.createElement('li');
@@ -157,11 +158,5 @@ updateActiveSong();
 // ✅ STEP 2: Auto-Play Next Song
 //--------------------------------------//
 audio.addEventListener('ended', () => {
-  songIndex++;
-  if (songIndex >= songs.length) {
-    songIndex = 0;
-  }
-  loadSong(songs[songIndex]);
-  playSong();
-  updateActiveSong();
+  nextSong();
 });
