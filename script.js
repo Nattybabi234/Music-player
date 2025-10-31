@@ -16,14 +16,14 @@ const songs = [
   {
     title: "Jugular Jugular",
     artist: "Greatman Takit and Lawrence Oyor",
-    src: "music/jugular jugular audio.mp3",
-    cover: "images/jugular jugular image.jpeg"
+    src: "jugular jugular audio.mp3",
+    cover: "jugular jugular image.jpeg"
   },
   {
     title: "E ti tobi to o",
     artist: "EmmaOMG",
-    src: "music/E ti tobi to o.mp3",
-    cover: "images/EmmaOMG E-Ti-Tobi-To image.jpg"
+    src: "E ti tobi to o.mp3",
+    cover: "EmmaOMG E-Ti-Tobi-To image.jpg"
   }
 ];
 
