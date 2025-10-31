@@ -11,9 +11,7 @@ const progressContainer = document.getElementById('progress-container');
 const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
 const volumeSlider = document.getElementById('volumeRange');
-const playlistEl = document.getElementById('playlist');
 
-// Songs array
 const songs = [
   {
     title: "Jugular Jugular",
@@ -29,10 +27,8 @@ const songs = [
   }
 ];
 
-let songIndex = 0; // Start with first song
-let isPlaying = false;
+let songIndex = 0; // start with the first song
 
-// Load song
 function loadSong(song) {
   title.textContent = song.title;
   artist.textContent = song.artist;
@@ -40,12 +36,15 @@ function loadSong(song) {
   cover.src = song.cover;
 }
 
-// Play / Pause functions
+loadSong(songs[songIndex]);
+
+let isPlaying = false;
+
 function playSong() {
   isPlaying = true;
   audio.play();
-  playBtn.textContent = "⏸";
-  cover.style.animation = "spin 5s linear infinite";
+  playBtn.textContent = "⏸"; // change icon
+  cover.style.animation = "spin 5s linear infinite"; // rotate cover
 }
 
 function pauseSong() {
@@ -55,44 +54,43 @@ function pauseSong() {
   cover.style.animation = "none";
 }
 
-// Toggle play button
 playBtn.addEventListener('click', () => {
   isPlaying ? pauseSong() : playSong();
 });
 
-// Previous / Next functions
 function prevSong() {
-  songIndex--;
-  if (songIndex < 0) songIndex = songs.length - 1;
-  loadSong(songs[songIndex]);
-  updateActiveSong();
-  playSong();
+  songIndex--; // go back one index
+  if (songIndex < 0) {
+    songIndex = songs.length - 1; // if at first song, go to last
+  }
+  loadSong(songs[songIndex]); // update the UI
+  playSong(); // automatically play
 }
 
 function nextSong() {
-  songIndex++;
-  if (songIndex >= songs.length) songIndex = 0;
-  loadSong(songs[songIndex]);
-  updateActiveSong();
-  playSong();
+  songIndex++; // go forward one index
+  if (songIndex >= songs.length) {
+    songIndex = 0; // if at last song, go back to first
+  }
+  loadSong(songs[songIndex]); // update the UI
+  playSong(); // automatically play
 }
 
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
 
-// Progress bar update
 function updateProgress(e) {
   const { duration, currentTime } = e.srcElement;
   const progressPercent = (currentTime / duration) * 100;
   progress.style.width = `${progressPercent}%`;
 
-  // Current time
+  // Update time display
   let minutes = Math.floor(currentTime / 60);
   let seconds = Math.floor(currentTime % 60);
   if (seconds < 10) seconds = `0${seconds}`;
   currentTimeEl.textContent = `${minutes}:${seconds}`;
 
-  // Duration
+  // Total duration
   let totalMinutes = Math.floor(duration / 60);
   let totalSeconds = Math.floor(duration % 60);
   if (totalSeconds < 10) totalSeconds = `0${totalSeconds}`;
@@ -103,7 +101,6 @@ function updateProgress(e) {
 
 audio.addEventListener('timeupdate', updateProgress);
 
-// Click on progress bar
 function setProgress(e) {
   const width = this.clientWidth;
   const clickX = e.offsetX;
@@ -114,44 +111,20 @@ function setProgress(e) {
 
 progressContainer.addEventListener('click', setProgress);
 
-// Volume control
 volumeSlider.addEventListener('input', (e) => {
   audio.volume = e.target.value;
 });
 
-audio.volume = volumeSlider.value;
+audio.volume = volumeSlider.value; // sets volume to 0.9 by default
 
-// Auto-play next song
-audio.addEventListener('ended', nextSong);
-
-// Playlist creation
-songs.forEach((song, index) => {
-  const li = document.createElement('li');
-  li.textContent = `${song.title} — ${song.artist}`;
-  li.classList.add('playlist-item');
-
-  li.addEventListener('click', () => {
-    songIndex = index;
-    loadSong(songs[songIndex]);
-    updateActiveSong();
-    playSong();
-  });
-
-  playlistEl.appendChild(li);
+audio.addEventListener('ended', () => {
+  nextSong(); // automatically go to the next song
 });
 
-// Highlight currently playing song
-function updateActiveSong() {
-  const items = document.querySelectorAll('.playlist-item');
-  items.forEach((item, index) => {
-    if (index === songIndex) {
-      item.classList.add('active');
-    } else {
-      item.classList.remove('active');
-    }
-  });
+function nextSong() {
+  songIndex++;
+  if (songIndex >= songs.length) songIndex = 0; // loops back to first song
+  loadSong(songs[songIndex]);
+  updateActiveSong();
+  playSong();
 }
-
-// Initial load
-loadSong(songs[songIndex]);
-updateActiveSong();
