@@ -116,15 +116,3 @@ volumeSlider.addEventListener('input', (e) => {
 });
 
 audio.volume = volumeSlider.value; // sets volume to 0.9 by default
-
-audio.addEventListener('ended', () => {
-  nextSong(); // automatically go to the next song
-});
-
-function nextSong() {
-  songIndex++;
-  if (songIndex >= songs.length) songIndex = 0; // loops back to first song
-  loadSong(songs[songIndex]);
-  updateActiveSong();
-  playSong();
-}
